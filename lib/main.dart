@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant_pos_flutter_web/signInPage.dart';
 
+// TO RUN ON WEB WITH IMAGES
+// flutter run -d chrome --webserver html
+
 void main() {
   runApp(const MyApp());
 }
