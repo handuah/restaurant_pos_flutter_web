@@ -1,6 +1,7 @@
 import 'dart:html';
 import 'package:flutter/material.dart';
 import 'package:restaurant_pos_flutter_web/Styles/style.dart';
+import 'package:restaurant_pos_flutter_web/dashboard.dart';
 
 // image urls
 // 1. https://rare-gallery.com/uploads/posts/1183198-food-meat-sandwich-burgers-burger-fast-food-hamburger-whopper-dish-breakfast-sandwich-slider-veggie-burger-cheeseburger-big-mac.jpg
@@ -171,7 +172,15 @@ class _SignInPageState extends State<SignInPage> {
                                   height: size.height * 0.06,
                                   width: size.width,
                                   child: ElevatedButton(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              const Dashboard(),
+                                        ),
+                                      );
+                                    },
                                     style: ElevatedButton.styleFrom(
                                       backgroundColor: orangish,
                                       elevation: 5.0,
