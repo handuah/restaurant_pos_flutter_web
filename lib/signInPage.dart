@@ -1,5 +1,10 @@
+import 'dart:html';
 import 'package:flutter/material.dart';
 import 'package:restaurant_pos_flutter_web/Styles/style.dart';
+
+// image urls
+// 1. https://rare-gallery.com/uploads/posts/1183198-food-meat-sandwich-burgers-burger-fast-food-hamburger-whopper-dish-breakfast-sandwich-slider-veggie-burger-cheeseburger-big-mac.jpg
+// 2. https://www.foodnavigator.com/var/wrbm_gb_food_pharma/storage/images/_aliases/wrbm_large/publications/food-beverage-nutrition/foodnavigator.com/news/science/plant-based-researchers-query-category-s-sustainability-performance/15943706-1-eng-GB/Plant-based-Researchers-query-category-s-sustainability-performance.jpg
 
 class SignInPage extends StatefulWidget {
   const SignInPage({super.key});
@@ -21,6 +26,10 @@ class _SignInPageState extends State<SignInPage> {
             height: size.height,
             width: size.width / 2,
             color: orangish,
+            child: Image.network(
+              'https://rare-gallery.com/uploads/posts/1183198-food-meat-sandwich-burgers-burger-fast-food-hamburger-whopper-dish-breakfast-sandwich-slider-veggie-burger-cheeseburger-big-mac.jpg',
+              fit: BoxFit.fitHeight,
+            ),
           ),
           Container(
             height: size.height,
@@ -77,8 +86,8 @@ class _SignInPageState extends State<SignInPage> {
                                   keyboardType: TextInputType.emailAddress,
                                   decoration: InputDecoration(
                                     hintText: 'Enter your Email',
-                                    hintStyle: boldText.copyWith(
-                                      color: blackish.withOpacity(0.8),
+                                    hintStyle: mediumText.copyWith(
+                                      color: blackish.withOpacity(0.5),
                                       fontSize: 12.0,
                                     ),
                                     border: const OutlineInputBorder(
@@ -116,8 +125,8 @@ class _SignInPageState extends State<SignInPage> {
                                   obscuringCharacter: '*',
                                   decoration: InputDecoration(
                                     hintText: 'Enter your Password',
-                                    hintStyle: boldText.copyWith(
-                                      color: blackish.withOpacity(0.8),
+                                    hintStyle: mediumText.copyWith(
+                                      color: blackish.withOpacity(0.5),
                                       fontSize: 12.0,
                                     ),
                                     border: const OutlineInputBorder(
@@ -156,7 +165,7 @@ class _SignInPageState extends State<SignInPage> {
                                   ],
                                 ),
                                 SizedBox(
-                                  height: size.height * 0.02,
+                                  height: size.height * 0.01,
                                 ),
                                 SizedBox(
                                   height: size.height * 0.06,
