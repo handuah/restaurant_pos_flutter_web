@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:restaurant_pos_flutter_web/Styles/style.dart';
+import 'package:restaurant_pos_flutter_web/dashContent.dart';
+import 'package:restaurant_pos_flutter_web/inventory.dart';
+
+import 'home.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({super.key});
@@ -153,7 +157,7 @@ class _DashboardState extends State<Dashboard> {
           ),
           Expanded(
             child: Center(
-              child: Text(getText(drawIndex)),
+              child: getText(drawIndex),
             ),
           ),
         ],
@@ -161,16 +165,16 @@ class _DashboardState extends State<Dashboard> {
     );
   }
 
-  String getText(int index) {
+  Widget getText(int index) {
     switch (index) {
       case 0:
-        return 'Dashboard';
+        return DashContent();
       case 1:
-        return 'Home';
+        return Home();
       case 2:
-        return 'Inventory';
+        return Inventory();
       default:
-        return 'No such page';
+        return Center();
     }
   }
 }
