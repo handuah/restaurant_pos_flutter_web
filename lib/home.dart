@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:lottie/lottie.dart';
 import 'package:restaurant_pos_flutter_web/Styles/style.dart';
 
 class Home extends StatefulWidget {
@@ -18,6 +19,39 @@ class _HomeState extends State<Home> {
     "burrger",
     "burrger",
     "burrger"
+  ];
+
+  List categoryStuff = [
+    {
+      'lottieimage':
+          'https://assets9.lottiefiles.com/packages/lf20_GUQObWT5Mw.json',
+      'categoryName': 'All'
+    },
+    {
+      'lottieimage':
+          'https://assets4.lottiefiles.com/packages/lf20_IYNhoR.json',
+      'categoryName': 'Pizza'
+    },
+    {
+      'lottieimage':
+          'https://assets5.lottiefiles.com/private_files/lf30_u71ailty.json',
+      'categoryName': 'Burger'
+    },
+    {
+      'lottieimage':
+          'https://assets8.lottiefiles.com/packages/lf20_rnnrduuq.json',
+      'categoryName': 'Juice'
+    },
+    {
+      'lottieimage':
+          'https://assets10.lottiefiles.com/packages/lf20_glqkl1qa.json',
+      'categoryName': 'Ice Cream'
+    },
+    {
+      'lottieimage':
+          'https://assets6.lottiefiles.com/private_files/lf30_fpdvsz3i.json',
+      'categoryName': 'Coffee'
+    },
   ];
   @override
   Widget build(BuildContext context) {
@@ -50,7 +84,7 @@ class _HomeState extends State<Home> {
                       width: size.width * 0.2,
                     ),
                     SizedBox(
-                      height: size.height * 0.15,
+                      height: size.height * 0.08,
                       width: size.width * 0.25,
                       child: TextFormField(
                         decoration: InputDecoration(
@@ -85,7 +119,32 @@ class _HomeState extends State<Home> {
                   ],
                 ),
                 SizedBox(
-                  height: size.height * 0.02,
+                  height: size.height * 0.01,
+                ),
+                Container(
+                  width: size.width,
+                  height: size.height * 0.12,
+                  // color: Colors.amber,
+                  child: Center(
+                    child: ListView.separated(
+                      padding: EdgeInsets.symmetric(
+                        vertical: size.height * 0.01,
+                        horizontal: size.width * 0.04,
+                      ),
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, index) => categoryCard(
+                          context,
+                          categoryStuff[index]['categoryName'],
+                          categoryStuff[index]['lottieimage']),
+                      separatorBuilder: (context, index) => SizedBox(
+                        width: size.width * 0.02,
+                      ),
+                      itemCount: categoryStuff.length,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: size.height * 0.01,
                 ),
                 Wrap(
                   alignment: WrapAlignment.start,
@@ -105,6 +164,39 @@ class _HomeState extends State<Home> {
               color: bluish,
             ),
           ),
+        ],
+      ),
+    );
+  }
+
+  Widget categoryCard(
+      BuildContext context, String categoryName, String lottieUrl) {
+    Size size = MediaQuery.of(context).size;
+    return Container(
+      height: size.height * 0.07,
+      width: size.width * 0.07,
+      decoration: BoxDecoration(
+        shape: BoxShape.rectangle,
+        border: Border.all(
+          color: Color.fromARGB(136, 217, 215, 215),
+          // width: 2.0,
+        ),
+        borderRadius: BorderRadius.circular(10.0),
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Container(
+            height: size.height * 0.06,
+            width: size.width * 0.04,
+            // color: Colors.red,
+            child: Lottie.network(lottieUrl),
+          ),
+          SizedBox(
+            height: size.height * 0.01,
+          ),
+          Text(categoryName),
         ],
       ),
     );
