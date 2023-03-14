@@ -12,6 +12,9 @@ class Dashboard extends StatefulWidget {
 
 class _DashboardState extends State<Dashboard> {
   int drawIndex = 0;
+  bool isDashSelected = true;
+  bool isHomeSelected = false;
+  bool isInvSelected = false;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -80,56 +83,70 @@ class _DashboardState extends State<Dashboard> {
             width: size.width * 0.15,
             child: ListView(
               children: [
-                // const DrawerHeader(
-                //   decoration: BoxDecoration(
-                //     color: Colors.blue,
-                //   ),
-                //   child: Text('Drawer Header'),
-                // ),
-                ListTile(
-                  leading: const Icon(Icons.dashboard),
-                  title: Text(
-                    'Dashboard',
-                    style: boldText.copyWith(
-                      fontSize: 16.0,
-                      fontWeight: FontWeight.normal,
+                Ink(
+                  color: isDashSelected ? orangish : Colors.white,
+                  child: ListTile(
+                    leading: const Icon(
+                      Icons.dashboard,
                     ),
+                    iconColor: isDashSelected ? Colors.white : blackish,
+                    title: Text(
+                      'Dashboard',
+                      style: boldText.copyWith(
+                        fontSize: 16.0,
+                        fontWeight: FontWeight.normal,
+                        color: isDashSelected ? Colors.white : blackish,
+                      ),
+                    ),
+                    onTap: () {
+                      setState(() {
+                        drawIndex = 0;
+                        isDashSelected = !isDashSelected;
+                      });
+                    },
                   ),
-                  onTap: () {
-                    setState(() {
-                      drawIndex = 0;
-                    });
-                  },
                 ),
-                ListTile(
-                  leading: const Icon(Icons.home),
-                  title: Text(
-                    'Home',
-                    style: boldText.copyWith(
-                      fontSize: 16.0,
-                      fontWeight: FontWeight.normal,
+                Ink(
+                  color: isHomeSelected ? orangish : Colors.white,
+                  child: ListTile(
+                    leading: const Icon(Icons.home),
+                    iconColor: isHomeSelected ? Colors.white : blackish,
+                    title: Text(
+                      'Home',
+                      style: boldText.copyWith(
+                        fontSize: 16.0,
+                        fontWeight: FontWeight.normal,
+                        color: isHomeSelected ? Colors.white : blackish,
+                      ),
                     ),
+                    onTap: () {
+                      setState(() {
+                        drawIndex = 1;
+                        isHomeSelected = !isHomeSelected;
+                      });
+                    },
                   ),
-                  onTap: () {
-                    setState(() {
-                      drawIndex = 1;
-                    });
-                  },
                 ),
-                ListTile(
-                  leading: const Icon(Icons.assignment_sharp),
-                  title: Text(
-                    'Inventory',
-                    style: boldText.copyWith(
-                      fontSize: 16.0,
-                      fontWeight: FontWeight.normal,
+                Ink(
+                  color: isInvSelected ? orangish : Colors.white,
+                  child: ListTile(
+                    leading: const Icon(Icons.assignment_sharp),
+                    iconColor: isInvSelected ? Colors.white : blackish,
+                    title: Text(
+                      'Inventory',
+                      style: boldText.copyWith(
+                        fontSize: 16.0,
+                        fontWeight: FontWeight.normal,
+                        color: isInvSelected ? Colors.white : blackish,
+                      ),
                     ),
+                    onTap: () {
+                      setState(() {
+                        drawIndex = 2;
+                        isInvSelected = !isInvSelected;
+                      });
+                    },
                   ),
-                  onTap: () {
-                    setState(() {
-                      drawIndex = 2;
-                    });
-                  },
                 ),
               ],
             ),
