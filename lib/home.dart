@@ -93,12 +93,7 @@ class _HomeState extends State<Home> {
                   crossAxisAlignment: WrapCrossAlignment.start,
                   runSpacing: size.width * 0.02,
                   spacing: size.width * 0.01,
-                  children: [
-                    // foodCard(context),
-                    // foodCard(context),
-                    // foodCard(context)
-                    for (var food in foods) foodCard(context, food)
-                  ],
+                  children: [for (var food in foods) foodCard(context, food)],
                 ),
               ],
             ),
