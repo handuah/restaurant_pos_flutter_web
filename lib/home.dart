@@ -191,7 +191,10 @@ class _HomeState extends State<Home> {
             height: size.height * 0.06,
             width: size.width * 0.04,
             // color: Colors.red,
-            child: Lottie.network(lottieUrl),
+            child: Lottie.network(
+              lottieUrl,
+              animate: false,
+            ),
           ),
           SizedBox(
             height: size.height * 0.01,
