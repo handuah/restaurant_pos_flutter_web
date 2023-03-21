@@ -66,18 +66,6 @@ class _HomeState extends State<Home> {
                         ),
                       ),
                     ),
-                    // SizedBox(
-                    //   height: size.height * 0.15,
-                    //   width: size.width * 0.1,
-                    //   child: IconButton(
-                    //     icon: const Icon(
-                    //       Icons.filter_list_rounded,
-                    //       color: Colors.black,
-                    //     ),
-                    //     color: orangish,
-                    //     onPressed: () {},
-                    //   ),
-                    // ),
                   ],
                 ),
                 SizedBox(
@@ -108,26 +96,35 @@ class _HomeState extends State<Home> {
                 SizedBox(
                   height: size.height * 0.01,
                 ),
-                Container(
-                  width: size.width,
-                  height: size.height * 2.0,
-                  color: Colors.yellow,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: GridView.builder(
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 3,
-                        crossAxisSpacing: size.width * 0.01,
-                        mainAxisSpacing: size.width * 0.02,
+                // force container height based on content
+                ConstrainedBox(
+                  constraints: BoxConstraints(
+                    // minWidth: size.width,
+                    // minHeight: size.height * 0.5,
+                    maxWidth: size.width,
+                    maxHeight: size.height * 0.7,
+                  ),
+                  child: Container(
+                    // width: size.width,
+                    // height: size.height * 2.0,
+                    // color: Colors.yellow,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: GridView.builder(
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 3,
+                          crossAxisSpacing: size.width * 0.01,
+                          mainAxisSpacing: size.width * 0.02,
+                        ),
+                        itemBuilder: (context, index) => foodCard(
+                          context,
+                          foods[index]["foodName"],
+                          foods[index]["imgUrl"],
+                          foods[index]["desc"],
+                          foods[index]["price"],
+                        ),
+                        itemCount: foods.length,
                       ),
-                      itemBuilder: (context, index) => foodCard(
-                        context,
-                        foods[index]["foodName"],
-                        foods[index]["imgUrl"],
-                        foods[index]["desc"],
-                        foods[index]["price"],
-                      ),
-                      itemCount: foods.length,
                     ),
                   ),
                 ),
@@ -189,94 +186,97 @@ class _HomeState extends State<Home> {
   Widget foodCard(BuildContext context, String foodName, String foodImg,
       String foodDesc, double price) {
     Size size = MediaQuery.of(context).size;
-    return SizedBox(
-      height: size.height * 0.12,
-      width: size.width * 0.2,
-      child: Card(
-        // color: Colors.green,
-        elevation: 2.0,
-        shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              height: size.height * 0.24,
-              width: size.width,
-              // color: Colors.red,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: NetworkImage(foodImg),
-                  fit: BoxFit.fitWidth,
-                ),
-                borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(20.0),
-                  topRight: Radius.circular(20.0),
-                ),
-              ),
-            ),
-            Container(
-              height: size.height * 0.155,
-              width: size.width,
-              decoration: const BoxDecoration(
-                // color: Colors.green,
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(20.0),
-                  bottomRight: Radius.circular(20.0),
+    return InkWell(
+      onHover: (value) {},
+      child: SizedBox(
+        height: size.height * 0.12,
+        width: size.width * 0.2,
+        child: Card(
+          // color: Colors.green,
+          elevation: 2.0,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                height: size.height * 0.24,
+                width: size.width,
+                // color: Colors.red,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: NetworkImage(foodImg),
+                    fit: BoxFit.cover,
+                  ),
+                  borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(20.0),
+                    topRight: Radius.circular(20.0),
+                  ),
                 ),
               ),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      foodName,
-                      style: blackText.copyWith(fontSize: 18.0),
-                    ),
-                    SizedBox(
-                      height: size.height * 0.01,
-                    ),
-                    Text(
-                      foodDesc,
-                      style: blackText.copyWith(
-                        fontSize: 12.0,
-                        color: blackish.withOpacity(
-                          0.6,
+              Container(
+                height: size.height * 0.155,
+                width: size.width,
+                decoration: const BoxDecoration(
+                  // color: Colors.green,
+                  borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(20.0),
+                    bottomRight: Radius.circular(20.0),
+                  ),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        foodName,
+                        style: blackText.copyWith(fontSize: 18.0),
+                      ),
+                      SizedBox(
+                        height: size.height * 0.01,
+                      ),
+                      Text(
+                        foodDesc,
+                        style: blackText.copyWith(
+                          fontSize: 12.0,
+                          color: blackish.withOpacity(
+                            0.6,
+                          ),
                         ),
                       ),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Text(
-                          "\$$price",
-                          style: blackText.copyWith(
-                            fontSize: 16.0,
-                            color: orangish.withOpacity(
-                              0.6,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text(
+                            "\$$price",
+                            style: blackText.copyWith(
+                              fontSize: 16.0,
+                              color: orangish.withOpacity(
+                                0.6,
+                              ),
+                              fontWeight: FontWeight.bold,
                             ),
-                            fontWeight: FontWeight.bold,
                           ),
-                        ),
-                        IconButton(
-                          onPressed: () {},
-                          style: IconButton.styleFrom(elevation: 2.0),
-                          icon: FaIcon(
-                            FontAwesomeIcons.circlePlus,
-                            color: greenish,
+                          IconButton(
+                            onPressed: () {},
+                            style: IconButton.styleFrom(elevation: 2.0),
+                            icon: FaIcon(
+                              FontAwesomeIcons.circlePlus,
+                              color: greenish,
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ],
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
