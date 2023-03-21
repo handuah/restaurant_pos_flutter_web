@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:lottie/lottie.dart';
+// import 'package:lottie/lottie.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:restaurant_pos_flutter_web/Styles/style.dart';
+import 'package:restaurant_pos_flutter_web/fake_jsons/categorybtns_fontawesome.dart';
 
 import '../fake_jsons/categorybtns.dart';
 import '../fake_jsons/foods.dart';
@@ -85,7 +85,7 @@ class _HomeState extends State<Home> {
                 ),
                 Container(
                   width: size.width,
-                  height: size.height * 0.12,
+                  height: size.height * 0.14,
                   // color: Colors.amber,
                   child: Center(
                     child: ListView.separated(
@@ -96,8 +96,8 @@ class _HomeState extends State<Home> {
                       scrollDirection: Axis.horizontal,
                       itemBuilder: (context, index) => categoryCard(
                           context,
-                          categoryStuff[index]['categoryName'],
-                          categoryStuff[index]['lottieimage']),
+                          categoryIcons[index]['categoryName'],
+                          categoryIcons[index]['fontawesome_icon']),
                       separatorBuilder: (context, index) => SizedBox(
                         width: size.width * 0.02,
                       ),
@@ -132,7 +132,7 @@ class _HomeState extends State<Home> {
   }
 
   Widget categoryCard(
-      BuildContext context, String categoryName, String lottieUrl) {
+      BuildContext context, String categoryName, IconData faIconName) {
     Size size = MediaQuery.of(context).size;
     return Container(
       height: size.height * 0.07,
@@ -149,19 +149,35 @@ class _HomeState extends State<Home> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
+          // Container(
+          //   height: size.height * 0.06,
+          //   width: size.width * 0.04,
+          //   // color: Colors.red,
+          //   child: Lottie.network(
+          //     lottieUrl,
+          //     animate: false,
+          //   ),
+          // ),
           Container(
             height: size.height * 0.06,
             width: size.width * 0.04,
             // color: Colors.red,
-            child: Lottie.network(
-              lottieUrl,
-              animate: false,
+            child: Center(
+              child: FaIcon(
+                faIconName,
+              ),
             ),
           ),
-          SizedBox(
-            height: size.height * 0.01,
+          // SizedBox(
+          //   height: size.height * 0.01,
+          // ),
+          Text(
+            categoryName,
+            style: blackText.copyWith(
+              fontWeight: FontWeight.w100,
+              color: blackish.withOpacity(0.6),
+            ),
           ),
-          Text(categoryName),
         ],
       ),
     );
