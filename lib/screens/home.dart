@@ -134,7 +134,140 @@ class _HomeState extends State<Home> {
           Expanded(
             child: Container(
               height: size.height,
-              color: bluish,
+              // color: bluish,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Bills',
+                    style: boldText.copyWith(fontSize: 20.0),
+                  ),
+                  SizedBox(
+                    width: size.width * 0.01,
+                  ),
+                  Container(
+                    height: size.height * 1.5 / 2,
+                    width: size.width,
+                    // color: Colors.red,
+                    child: ListView.separated(
+                      padding: const EdgeInsets.all(8.0),
+                      scrollDirection: Axis.vertical,
+                      itemBuilder: (context, index) => Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            height: size.height * 0.08,
+                            width: size.width * 0.04,
+                            decoration: BoxDecoration(
+                              color: Colors.orange,
+                              borderRadius: BorderRadius.circular(5.0),
+                              image: const DecorationImage(
+                                fit: BoxFit.cover,
+                                image: NetworkImage(
+                                    "https://recipetineats.com/wp-content/uploads/2018/04/Veggie-Burgers_9a.jpg"),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: size.width * 0.005,
+                          ),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Burger',
+                                    style: blackText.copyWith(
+                                      fontSize: 14.0,
+                                    ),
+                                  ),
+                                  FaIcon(
+                                    FontAwesomeIcons.circleXmark,
+                                    color: orangish,
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Row(
+                                    children: [
+                                      FaIcon(
+                                        FontAwesomeIcons.circleMinus,
+                                        color: orangish,
+                                      ),
+                                      Text(
+                                        '2',
+                                        style: blackText.copyWith(
+                                          fontSize: 14.0,
+                                        ),
+                                      ),
+                                      FaIcon(
+                                        FontAwesomeIcons.circlePlus,
+                                        color: orangish,
+                                      ),
+                                    ],
+                                  ),
+                                  Text(
+                                    '\$10.00',
+                                    style: blackText.copyWith(
+                                      fontSize: 14.0,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
+                      // padding: const EdgeInsets.all(8.0),
+                      // itemBuilder: (context, index) {
+                      //   Row(
+                      //     mainAxisAlignment: MainAxisAlignment.start,
+                      //     crossAxisAlignment: CrossAxisAlignment.start,
+                      //     children: [
+                      //       Container(
+                      //         height: size.height * 0.1,
+                      //         width: size.width * 0.05,
+                      //         decoration: BoxDecoration(
+                      //           color: Colors.orange,
+                      //           borderRadius: BorderRadius.circular(20.0),
+                      //           image: const DecorationImage(
+                      //             fit: BoxFit.cover,
+                      //             image: NetworkImage(
+                      //                 "https://recipetineats.com/wp-content/uploads/2018/04/Veggie-Burgers_9a.jpg"),
+                      //           ),
+                      //         ),
+                      //       ),
+                      //       Text('Burger')
+                      //     ],
+                      //   );
+                      //   return Container(
+                      //     height: size.height * 0.1,
+                      //     color: Colors.white,
+                      //   );
+                      // },
+                      separatorBuilder: (context, index) => Divider(),
+                      itemCount: 1,
+                    ),
+                  ),
+                  Flexible(
+                    child: Container(
+                      // height: size.height * 0.2 / 2,
+                      color: Colors.purple,
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ],
@@ -281,4 +414,6 @@ class _HomeState extends State<Home> {
       ),
     );
   }
+
+// SELECTED FOODS
 }
