@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:restaurant_pos_flutter_web/Styles/style.dart';
-import 'package:restaurant_pos_flutter_web/dashContent.dart';
-import 'package:restaurant_pos_flutter_web/inventory.dart';
+import 'package:restaurant_pos_flutter_web/screens/dashContent.dart';
+import 'package:restaurant_pos_flutter_web/screens/inventory.dart';
 
 import 'home.dart';
 
@@ -168,13 +166,13 @@ class _DashboardState extends State<Dashboard> {
   Widget getText(int index) {
     switch (index) {
       case 0:
-        return DashContent();
+        return const DashContent();
       case 1:
-        return Home();
+        return const Home();
       case 2:
-        return Inventory();
+        return const Inventory();
       default:
-        return Center();
+        return const Center();
     }
   }
 }

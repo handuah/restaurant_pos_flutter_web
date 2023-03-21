@@ -1,7 +1,7 @@
 import 'dart:html';
 import 'package:flutter/material.dart';
 import 'package:restaurant_pos_flutter_web/Styles/style.dart';
-import 'package:restaurant_pos_flutter_web/dashboard.dart';
+import 'package:restaurant_pos_flutter_web/screens/dashboard.dart';
 
 // image urls
 // 1. https://rare-gallery.com/uploads/posts/1183198-food-meat-sandwich-burgers-burger-fast-food-hamburger-whopper-dish-breakfast-sandwich-slider-veggie-burger-cheeseburger-big-mac.jpg

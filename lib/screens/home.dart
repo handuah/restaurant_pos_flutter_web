@@ -4,6 +4,9 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:lottie/lottie.dart';
 import 'package:restaurant_pos_flutter_web/Styles/style.dart';
 
+import '../fake_jsons/categorybtns.dart';
+import '../fake_jsons/foods.dart';
+
 class Home extends StatefulWidget {
   const Home({super.key});
 
@@ -12,47 +15,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  List foods = [
-    "burrger",
-    "burrger",
-    "burrger",
-    "burrger",
-    "burrger",
-    "burrger"
-  ];
-
-  List categoryStuff = [
-    {
-      'lottieimage':
-          'https://assets9.lottiefiles.com/packages/lf20_GUQObWT5Mw.json',
-      'categoryName': 'All'
-    },
-    {
-      'lottieimage':
-          'https://assets4.lottiefiles.com/packages/lf20_IYNhoR.json',
-      'categoryName': 'Pizza'
-    },
-    {
-      'lottieimage':
-          'https://assets5.lottiefiles.com/private_files/lf30_u71ailty.json',
-      'categoryName': 'Burger'
-    },
-    {
-      'lottieimage':
-          'https://assets8.lottiefiles.com/packages/lf20_rnnrduuq.json',
-      'categoryName': 'Juice'
-    },
-    {
-      'lottieimage':
-          'https://assets10.lottiefiles.com/packages/lf20_glqkl1qa.json',
-      'categoryName': 'Ice Cream'
-    },
-    {
-      'lottieimage':
-          'https://assets6.lottiefiles.com/private_files/lf30_fpdvsz3i.json',
-      'categoryName': 'Coffee'
-    },
-  ];
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
