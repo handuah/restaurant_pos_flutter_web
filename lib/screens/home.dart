@@ -108,13 +108,28 @@ class _HomeState extends State<Home> {
                 SizedBox(
                   height: size.height * 0.01,
                 ),
-                Wrap(
-                  alignment: WrapAlignment.start,
-                  // runAlignment: WrapAlignment.start,
-                  crossAxisAlignment: WrapCrossAlignment.start,
-                  runSpacing: size.width * 0.02,
-                  spacing: size.width * 0.01,
-                  children: [for (var food in foods) foodCard(context, food)],
+                Container(
+                  width: size.width,
+                  height: size.height * 2.0,
+                  color: Colors.yellow,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: GridView.builder(
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 3,
+                        crossAxisSpacing: size.width * 0.01,
+                        mainAxisSpacing: size.width * 0.02,
+                      ),
+                      itemBuilder: (context, index) => foodCard(
+                        context,
+                        foods[index]["foodName"],
+                        foods[index]["imgUrl"],
+                        foods[index]["desc"],
+                        foods[index]["price"],
+                      ),
+                      itemCount: foods.length,
+                    ),
+                  ),
                 ),
               ],
             ),
@@ -122,7 +137,6 @@ class _HomeState extends State<Home> {
           Expanded(
             child: Container(
               height: size.height,
-              // width: size.width * 0.5 / 3,
               color: bluish,
             ),
           ),
@@ -131,6 +145,7 @@ class _HomeState extends State<Home> {
     );
   }
 
+// CATEGORY BTNS
   Widget categoryCard(
       BuildContext context, String categoryName, IconData faIconName) {
     Size size = MediaQuery.of(context).size;
@@ -140,8 +155,7 @@ class _HomeState extends State<Home> {
       decoration: BoxDecoration(
         shape: BoxShape.rectangle,
         border: Border.all(
-          color: Color.fromARGB(136, 217, 215, 215),
-          // width: 2.0,
+          color: const Color.fromARGB(136, 217, 215, 215),
         ),
         borderRadius: BorderRadius.circular(10.0),
       ),
@@ -149,16 +163,7 @@ class _HomeState extends State<Home> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          // Container(
-          //   height: size.height * 0.06,
-          //   width: size.width * 0.04,
-          //   // color: Colors.red,
-          //   child: Lottie.network(
-          //     lottieUrl,
-          //     animate: false,
-          //   ),
-          // ),
-          Container(
+          SizedBox(
             height: size.height * 0.06,
             width: size.width * 0.04,
             // color: Colors.red,
@@ -168,9 +173,6 @@ class _HomeState extends State<Home> {
               ),
             ),
           ),
-          // SizedBox(
-          //   height: size.height * 0.01,
-          // ),
           Text(
             categoryName,
             style: blackText.copyWith(
@@ -183,13 +185,15 @@ class _HomeState extends State<Home> {
     );
   }
 
-  Widget foodCard(BuildContext context, String foodName) {
+// FOOD CARDS
+  Widget foodCard(BuildContext context, String foodName, String foodImg,
+      String foodDesc, double price) {
     Size size = MediaQuery.of(context).size;
     return SizedBox(
-      height: size.height * 0.4,
+      height: size.height * 0.12,
       width: size.width * 0.2,
       child: Card(
-        color: Colors.green,
+        // color: Colors.green,
         elevation: 2.0,
         shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
@@ -198,15 +202,79 @@ class _HomeState extends State<Home> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              height: size.height * 0.25,
+              height: size.height * 0.24,
               width: size.width,
-              color: Colors.red,
+              // color: Colors.red,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: NetworkImage(foodImg),
+                  fit: BoxFit.fitWidth,
+                ),
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(20.0),
+                  topRight: Radius.circular(20.0),
+                ),
+              ),
             ),
             Container(
-              height: size.height * 0.1,
+              height: size.height * 0.155,
               width: size.width,
-              color: Colors.green,
-              child: Text(foodName),
+              decoration: const BoxDecoration(
+                // color: Colors.green,
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(20.0),
+                  bottomRight: Radius.circular(20.0),
+                ),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      foodName,
+                      style: blackText.copyWith(fontSize: 18.0),
+                    ),
+                    SizedBox(
+                      height: size.height * 0.01,
+                    ),
+                    Text(
+                      foodDesc,
+                      style: blackText.copyWith(
+                        fontSize: 12.0,
+                        color: blackish.withOpacity(
+                          0.6,
+                        ),
+                      ),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          "\$$price",
+                          style: blackText.copyWith(
+                            fontSize: 16.0,
+                            color: orangish.withOpacity(
+                              0.6,
+                            ),
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        IconButton(
+                          onPressed: () {},
+                          style: IconButton.styleFrom(elevation: 2.0),
+                          icon: FaIcon(
+                            FontAwesomeIcons.circlePlus,
+                            color: greenish,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
             ),
           ],
         ),
